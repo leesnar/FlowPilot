@@ -1,0 +1,13 @@
+name = "flowpilot"
+main = "worker/index.js"
+compatibility_date = "2026-06-08"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "flowpilot"
+database_id = "local-flowpilot-demo"
+migrations_dir = "migrations"

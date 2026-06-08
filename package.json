@@ -1,0 +1,21 @@
+{
+  "name": "flowpilot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "FlowPilot portfolio SaaS app for AI workflow automation.",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs"
+  },
+  "keywords": [
+    "portfolio",
+    "saas",
+    "workflow-automation",
+    "ai",
+    "cloudflare-sites"
+  ],
+  "author": "",
+  "license": "UNLICENSED"
+}
