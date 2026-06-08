@@ -54,4 +54,9 @@ if (build.status !== 0) {
   throw new Error("Build command failed.");
 }
 
+const serverCheck = spawnSync(process.execPath, ["--check", "dist/index.js"], { encoding: "utf8" });
+if (serverCheck.status !== 0) {
+  throw new Error(`dist/index.js failed syntax validation:\n${serverCheck.stderr}`);
+}
+
 console.log("FlowPilot validation passed.");
