@@ -15,7 +15,7 @@ const root = document.getElementById("app");
 let state = null;
 const ui = {
   loading: true,
-  path: location.pathname,
+  path: routeFromLocation(),
   query: readQuery(),
   toasts: [],
   billingCycle: "monthly",
@@ -55,7 +55,7 @@ function renderNow() {
 
 function navigate(path) {
   const url = new URL(path, location.origin);
-  history.pushState({}, "", `${url.pathname}${url.search}`);
+  history.pushState({}, "", `${basePath()}${url.pathname}${url.search}`);
   ui.path = url.pathname;
   ui.query = Object.fromEntries(url.searchParams.entries());
   ui.modal = null;
@@ -64,7 +64,7 @@ function navigate(path) {
 }
 
 window.addEventListener("popstate", () => {
-  ui.path = location.pathname;
+  ui.path = routeFromLocation();
   ui.query = readQuery();
   ui.modal = null;
   renderNow();
@@ -758,6 +758,19 @@ function toggleArray(values, value) {
 
 function readQuery() {
   return Object.fromEntries(new URLSearchParams(location.search).entries());
+}
+
+function routeFromLocation() {
+  const pathname = location.pathname;
+  const base = basePath();
+  const route = base && pathname.startsWith(base) ? pathname.slice(base.length) || "/" : pathname;
+  return route || "/";
+}
+
+function basePath() {
+  const firstSegment = location.pathname.split("/").filter(Boolean)[0] || "";
+  const routeSegments = new Set(["app", "pricing", "templates", "case-study", "login", "onboarding"]);
+  return firstSegment && !routeSegments.has(firstSegment) ? `/${firstSegment}` : "";
 }
 
 function restoreFocus() {

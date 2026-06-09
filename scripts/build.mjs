@@ -10,6 +10,7 @@ await cp(join(root, "src"), join(dist, "src"), { recursive: true });
 await cp(join(root, "worker"), join(dist, "worker"), { recursive: true });
 await cp(join(root, "migrations"), join(dist, "migrations"), { recursive: true });
 await cp(join(root, "index.html"), join(dist, "index.html"));
+await cp(join(root, "index.html"), join(dist, "404.html"));
 await writeFile(
   join(dist, "index.js"),
   [

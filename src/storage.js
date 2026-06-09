@@ -79,7 +79,10 @@ async function writeToApi(state, path = "/api/state") {
 }
 
 function shouldTryApi() {
-  return location.protocol !== "file:" && !location.hostname.includes("localhost") && !location.hostname.includes("127.0.0.1");
+  return location.protocol !== "file:"
+    && !location.hostname.includes("localhost")
+    && !location.hostname.includes("127.0.0.1")
+    && !location.hostname.endsWith("github.io");
 }
 
 function fetchWithTimeout(url, options) {
